@@ -9,7 +9,8 @@ using namespace std;
 int b,c,d,pilihan;
 int a = 1;
 int t = 1;
-int k = 1;
+char yn;
+
 struct buku{
     string judul;
     string pengarang;
@@ -22,10 +23,9 @@ struct tanggal{
     string harip;
     string harik;
     string nama;
-    int tanggalp,bulanp,tahunp;
-    int tanggalk,bulank,tahunk;
+    int tanggalp,tanggalk,kodepinjam,kodebuku,status;
     };
-    tanggal tgl[100];
+    tanggal tgl[100000];
  
 void input_buku();
 void lihat_list_buku();
@@ -109,7 +109,7 @@ void input_buku(){
         cin >> input[a].jumlah_buku;
         cout << "masukan kode buku = " << endl;
         cin >> input[a].kode;
-        a = a + 1;
+        a++;
         cout << a << endl;
         }
 
@@ -155,6 +155,7 @@ cin >> b;
         cin >> input[i].jumlah_buku;
         cout << "masukan kode buku = " << endl;
         cin >> input[i].kode;
+        break;
         }
         else{
             cout << "Kode buku yang anda masukan tidak ditemukan" << endl;
@@ -181,6 +182,7 @@ void delete_buku(){
             input[i].jumlah_buku = input[a-1].jumlah_buku;
             input[i].kode = input[a-1].kode;
             a--;
+            break;
         }
         else{
             cout << "Kode buku yang anda masukan tidak ditemukan" << endl;
@@ -200,22 +202,28 @@ void borrow_buku(){
             cout << input[i].jumlah_buku << "\t\t";
             cout << input[i].kode << endl;
 
-            cout << "masukan nama = " << endl;
-            cin >> tgl[t].nama;
-            cout << "masukan hari = " << endl;
-            cin >> tgl[t].harip;
-            cout << "masukan tanggal = " << endl;
-            cin >> tgl[t].tanggalp;
-            cout << "masukan bulan = " << endl;
-            cin >> tgl[t].bulanp;
-            cout << "masukan tahun = " << endl;
-            cin >> tgl[t].tahunp;
+            cout << "pinjam buku nomor = " << t << endl;
+            cout << "masukan kode buku = ";
+            cin >> tgl[t].kodebuku; cout << endl;
+            if(input[i].kode == tgl[t].kodebuku){
+                input[i].jumlah_buku = input[i].jumlah_buku - 1;
+            }
+            cout << "masukan kode pinjam = ";
+            cin >> tgl[t].kodepinjam; cout << endl;
+            cout << "masukan nama = ";
+            cin >> tgl[t].nama; cout << endl;
+            cout << "masukan hari pinjam= ";
+            cin >> tgl[t].harip; cout << endl;
+            cout << "masukan tanggal pinjam (DDMMYYYY)= ";
+            cin >> tgl[t].tanggalp; cout << endl;
+            cout << "masukan hari kembali= ";
+            cin >> tgl[t].harip; cout << endl;
+            cout << "masukan tanggal kembali (DDMMYYYY)= ";
+            cin >> tgl[t].tanggalp; cout << endl;
+            cout << "masukan status = (1 = dipinjam)";
+            cin >> tgl[t].status; cout << endl;
             t++;
-            input[i].jumlah_buku = input[i].jumlah_buku - 1;
             break;
-        }
-        else{
-            cout << "Kode buku yang anda masukan tidak ditemukan" << endl;
         }
     }
 }
@@ -232,16 +240,35 @@ void return_buku(){
             cout << input[i].jumlah_buku << "\t\t";
             cout << input[i].kode << endl;
 
-            cout << "masukan hari = " << endl;
-            cin >> tgl[k].harik;
-            cout << "masukan tanggal = " << endl;
-            cin >> tgl[k].tanggalk;
-            cout << "masukan bulan = " << endl;
-            cin >> tgl[k].bulank;
-            cout << "masukan tahun = " << endl;
-            cin >> tgl[k].tahunk;
-            k++;
-            input[i].jumlah_buku = input[i].jumlah_buku + 1;
+            for(int j=1; j<=t; j++){
+                if(input[i].kode == tgl[j].kodebuku){
+                    cout << "pinjaman buku ke = " << j << endl;
+                    cout << "nama = " << tgl[j].nama << endl;
+                    cout << "hari pinjam = " << tgl[j].harip << endl;
+                    cout << "tanggal pinjam = " << tgl[j].tanggalp << endl;
+                    cout << "hari kembali = " << tgl[j].harik << endl;
+                    cout << "tanggal kembali = " << tgl[j].tanggalk << endl;
+                    if(tgl[j].status == 1){
+                        cout << "status = " << "dipinjam" << endl;
+                    }
+                    else{
+                        cout << "status = " << "dikembalikan" << endl;
+                    }
+                    cout << endl;
+                    cout << "sudah dikembalikan? (y/n) = "; cin >> yn;
+                    if(yn == 'y' || yn == 'Y'){
+                        tgl[i].status = 2;
+                        input[i].jumlah_buku = input[i].jumlah_buku + 1;
+                        cout << "buku sudah dikembalikan" << endl;
+                        break;
+                    }
+                    else{
+                        cout << "buku belum dikembalikan" << endl;
+                    }
+                    break;
+                }
+            }
+            break;
         }
         else{
             cout << "Kode buku yang anda masukan tidak ditemukan" << endl;
@@ -250,29 +277,20 @@ void return_buku(){
 }
 
 void laporan_buku(){
-    cout << "JUDUL BUKU" << "\t";
-    cout << "JUMLAH BUKU" << "\t";
-    cout << "KODE" << "\t";
-    cout << "NAMA" << "\t\t";
-    cout << "HARI PINJAM" << "\t";
-    cout << "TGL PINJAM" << "\t";
-    cout << "HARI KEMBALI" << "\t";
-    cout << "TGL KEMBALI" << endl;
-
-    for(int i=1; i<a; i++){
-        cout << input[i].judul << "\t\t";
-        cout << input[i].jumlah_buku << "\t\t";
-        cout << input[i].kode << "\t";
-    }
-
-    for(int i=1; i<=t; i++){
+    cout << "NAMA \t\t KODE BUKU \t\t KODE PINJAM \t\t HARI PINJAM \t\t TANGGAL PINJAM \t\t HARI KEMBALI \t\t TANGGAL KEMBALI \t\t STATUS" << endl; 
+    for(int i=0; i<=t; i++){
         cout << tgl[i].nama << "\t\t";
+        cout << tgl[i].kodebuku << "\t\t";
+        cout << tgl[i].kodepinjam << "\t\t";
         cout << tgl[i].harip << "\t\t";
-        cout << tgl[i].tanggalp << tgl[i].bulanp << tgl[i].tahunp << "\t";
-    }
-
-    for(int i=1; i<=k; i++){
-        cout << tgl[i].harik << "\t";
-        cout << tgl[i].tanggalk << tgl[i].bulank << tgl[i].tahunk << endl;
+        cout << tgl[i].tanggalp << "\t\t";
+        cout << tgl[i].harik << "\t\t";
+        cout << tgl[i].tanggalk << "\t\t";
+        if(tgl[i].status == 'y'){
+            cout << "dipinjam" << endl;
+        }
+        else{
+            cout << "dikembalikan" << endl;
+        }
     }
 }
