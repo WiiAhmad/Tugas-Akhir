@@ -1,9 +1,7 @@
 #include <iostream>
 #include <conio.h>
 #include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <cstdio>
+#include <iomanip>
 using namespace std;
 
 int b,c,d,pilihan;
@@ -37,97 +35,90 @@ void laporan_buku();
  
 int main(){
     menu:
-    cout << "TUGAS AKHIR - MANAJEMEN BUKU" << endl;
-    cout << "1. Tambahkan buku" << endl;
-    cout << "2. Edit buku" << endl;
-    cout << "3. Delete buku" << endl;
-    cout << "4. lihat list buku" << endl;
-    cout << "5. meminjam buku" << endl;
-    cout << "6. mengembalikan buku" << endl;
-    cout << "7. Laporan Buku" << endl;
-    cout << "8. keluar program " << endl;
-    cout << "masukan pilihan anda = "; cin >> pilihan;
+    cout<<"---- Aplikasi Perpustakaan ----"<<endl;
+    cout<<"-------- Menu ----------\n";
+    cout<<" 1. Input Buku        \n";
+    cout<<" 2. Edit Buku        \n";
+    cout<<" 3. Delete Buku        \n";
+    cout<<" 4. Daftar Buku       \n";
+    cout<<" 5. Peminjaman      \n";
+    cout<<" 6. Pengembalian    \n";
+    cout<<" 7. Laporan   \n";
+    cout<<" 8. Exit                \n";
+    cout<<"----------------------\n";
+    cout<<"Masukan Pilihan anda[ 1 s.d. 8 ] = "; cin >> pilihan;
  
     switch(pilihan){
         case 1:
-            cout << "Anda memilih tambahkan buku" << endl;
+            cout << " Input Buku " << endl;
             input_buku();
             goto menu;
         break;
         case 2:
-            cout << "Anda memilih Edit Buku" << endl;
+            cout << " Edit Buku " << endl;
             edit_buku();
             goto menu;
         break;
         case 3:
-            cout << "Anda memilih Delete buku" << endl;
+            cout << " Delete buku " << endl;
             delete_buku();
             goto menu;
         break;
         case 4:
-            cout << "Anda memilih lihat list buku" << endl;
+            cout << " Daftar Buku " << endl;
             lihat_list_buku();
             goto menu;
         break;
         case 5:
-            cout << "Anda memilih meminjam buku" << endl;
+            cout << " Peminjaman " << endl;
             borrow_buku();
             goto menu;  
         break;
         case 6:
-            cout << "Anda memilih mengembalikan buku" << endl;
+            cout << " Pengembalian " << endl;
             return_buku();
             goto menu;
         break;
         case 7:
-            cout << "Anda memilih laporan perpustakaan" <<  endl;
+            cout << " Laporan Buku" <<  endl;
             laporan_buku();
             goto menu;
         break;
         case 8:
-            cout << "Anda memilih keluar program" << endl;
+            cout << "EXIT" << endl;
             return 0;
         break;
         default:
-            cout << "anda salah memasukan nomor diatas silahkan input ulang" << endl;
+            cout << " Anda Salah Memasukan Pilihan " << endl;
             goto menu;
         break;
     }
 }
 
 void input_buku(){
-        cout << "buku ke = " << a << endl;
-        cout << "masukan nama buku = " << endl;
+        cout << " Buku ke - " << a << endl;
+        cout << "masukan nama buku = ";
         cin >> input[a].judul;
-        cout << "masukan nama pengarang = " << endl;
+        cout << "masukan nama pengarang = ";
         cin >> input[a].pengarang;
-        cout << "masukan nama penerbit = " << endl;
+        cout << "masukan nama penerbit = ";
         cin >> input[a].penerbit;
-        cout << "masukan tahun terbit = " << endl;
+        cout << "masukan tahun terbit = ";
         cin >> input[a].tahun;
-        cout << "masukan jumlah buku = " << endl;
+        cout << "masukan jumlah buku = ";
         cin >> input[a].jumlah_buku;
-        cout << "masukan kode buku = " << endl;
+        cout << "masukan kode buku = ";
         cin >> input[a].kode;
         a++;
-        cout << a << endl;
         }
 
 void lihat_list_buku(){
-    cout << "JUDUL BUKU" << "\t";
-    cout << "PENGARANG" << "\t";
-    cout << "PENERBIT" << "\t";
-    cout << "TAHUN TERBIT" << "\t";
-    cout << "JUMLAH BUKU" << "\t";
-    cout << "KODE" << endl;
-
+    cout<<"----------------------------------------------------------------------------------\n";
+	cout<<"Kode Buku     Judul Buku    Pengarang    Penerbit    Tahun Terbit    Jumlah Buku \n";
+	cout<<"----------------------------------------------------------------------------------\n";
     for(int i=1; i<a; i++){
-        cout << input[i].judul << "\t\t";
-        cout << input[i].pengarang << "\t\t";
-        cout << input[i].penerbit << "\t\t";
-        cout << input[i].tahun << "\t\t";
-        cout << input[i].jumlah_buku << "\t\t";
-        cout << input[i].kode << endl;
+    cout<<setw(3)<<input[i].kode<<setw(15)<<input[i].judul<<setw(15)<<input[i].pengarang<<setw(15);
+    cout<<input[i].penerbit<<setw(15)<<input[i].tahun<<setw(15)<<input[i].jumlah_buku<<endl;
     }
 }
 
