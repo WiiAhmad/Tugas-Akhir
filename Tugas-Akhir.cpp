@@ -120,6 +120,7 @@ void lihat_list_buku(){
     cout<<setw(3)<<input[i].kode<<setw(15)<<input[i].judul<<setw(15)<<input[i].pengarang<<setw(15);
     cout<<input[i].penerbit<<setw(15)<<input[i].tahun<<setw(15)<<input[i].jumlah_buku<<endl;
     }
+    cout<<"----------------------------------------------------------------------------------\n";
 }
 
 void edit_buku(){
@@ -127,12 +128,8 @@ cout << "masukan kode buku yang ingin di edit = " << endl;
 cin >> b;
     for(int i=0; i<=a; i++){
         if(b == input[i].kode){
-            cout << input[i].judul << "\t\t";
-            cout << input[i].pengarang << "\t\t";
-            cout << input[i].penerbit << "\t\t";
-            cout << input[i].tahun << "\t\t";
-            cout << input[i].jumlah_buku << "\t\t";
-            cout << input[i].kode << endl;
+        cout<<setw(3)<<input[i].kode<<setw(15)<<input[i].judul<<setw(15)<<input[i].pengarang<<setw(15);
+        cout<<input[i].penerbit<<setw(15)<<input[i].tahun<<setw(15)<<input[i].jumlah_buku<<endl;
 
         cout << "masukan nama buku = " << endl;
         cin >> input[i].judul;
@@ -159,12 +156,8 @@ void delete_buku(){
     cin >> c;
     for(int i=1; i<a; i++){
         if(c == input[i].kode){
-                cout << input[i].judul << "\t\t";
-            cout << input[i].pengarang << "\t\t";
-            cout << input[i].penerbit << "\t\t";
-            cout << input[i].tahun << "\t\t";
-            cout << input[i].jumlah_buku << "\t\t";
-            cout << input[i].kode << endl;
+            cout<<setw(3)<<input[i].kode<<setw(15)<<input[i].judul<<setw(15)<<input[i].pengarang<<setw(15);
+            cout<<input[i].penerbit<<setw(15)<<input[i].tahun<<setw(15)<<input[i].jumlah_buku<<endl;
 
             input[i].judul = input[a-1].judul;
             input[i].pengarang = input[a-1].pengarang;
