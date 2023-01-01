@@ -237,11 +237,11 @@ void laporan_buku(){
 	cout<<"--------------------------------------------------------------------------------------------------------------------------\n";
     for(int i=1; i<=t; i++){
         if(tgl[i].status == 1){
-            cout<<setw(15)<<tgl[i].kodepinjam<<setw(15)<<tgl[i].nama<<setw(15)<<tgl[i].harip<<setw(15)<<tgl[i].tanggalp;
-            cout<<setw(15)<<tgl[i].harik<<setw(15)<<tgl[i].tanggalk<<setw(3)<<tgl[i].kodebuku<<setw(10)<<"dipinjam"<<endl;
+            cout<<setw(6)<<tgl[i].kodepinjam<<setw(17)<<tgl[i].nama<<setw(13)<<tgl[i].harip<<setw(18)<<tgl[i].tanggalp;
+            cout<<setw(15)<<tgl[i].harik<<setw(18)<<tgl[i].tanggalk<<setw(13)<<tgl[i].kodebuku<<setw(20)<<"dipinjam"<<endl;
         }else{
-            cout<<setw(15)<<tgl[i].kodepinjam<<setw(15)<<tgl[i].nama<<setw(15)<<tgl[i].harip<<setw(15)<<tgl[i].tanggalp;
-            cout<<setw(15)<<tgl[i].harik<<setw(15)<<tgl[i].tanggalk<<setw(3)<<tgl[i].kodebuku<<setw(10)<<"dikembalikan"<<endl;
+            cout<<setw(6)<<tgl[i].kodepinjam<<setw(17)<<tgl[i].nama<<setw(13)<<tgl[i].harip<<setw(18)<<tgl[i].tanggalp;
+            cout<<setw(15)<<tgl[i].harik<<setw(18)<<tgl[i].tanggalk<<setw(13)<<tgl[i].kodebuku<<setw(20)<<"dikembalikan"<<endl;
         }
     }
 }
