@@ -1,8 +1,7 @@
 #include <iostream>
 #include <conio.h>
-#include <string.h>
+#include <cstring.h>
 #include <iomanip>
-using namespace std;
 
 int b,c,d,pilihan;
 int a = 1;
@@ -16,12 +15,12 @@ struct buku{
     int tahun,jumlah_buku,kode;
     };
     buku input[100];
- 
+
 struct tanggal{
     string harip;
     string harik;
     string nama;
-    int status = 0;
+    int status;
     int tanggalp,tanggalk,kodepinjam,kodebuku;
     };
     tanggal tgl[100000];
@@ -33,7 +32,7 @@ void delete_buku();
 void borrow_buku();
 void return_buku();
 void laporan_buku();
- 
+
 int main(){
     menu:
     cout<<"---- Aplikasi Perpustakaan ----"<<endl;
@@ -232,7 +231,7 @@ void return_buku(){
 }
 
 void laporan_buku(){
-    cout<<"----------------------------------------------------------------------------------------------------------------------\n";
+	cout<<"----------------------------------------------------------------------------------------------------------------------\n";
 	cout<<"Kode pinjam      Nama        Hari Pinjam     Tgl Pinjam      Hari Kembali    Tgl Kembali     Kode Buku       Status\n";
 	cout<<"----------------------------------------------------------------------------------------------------------------------\n";
     for(int i=1; i<=t; i++){
