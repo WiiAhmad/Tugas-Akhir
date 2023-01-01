@@ -21,7 +21,7 @@ struct tanggal{
     string harip;
     string harik;
     string nama;
-    int status = 0;
+    int status = 1;
     int tanggalp,tanggalk,kodepinjam,kodebuku;
     };
     tanggal tgl[100000];
