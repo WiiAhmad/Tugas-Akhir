@@ -4,27 +4,23 @@
 #include <iomanip>
 using namespace std;
 
-int b,c,d,pilihan;
+int b,c,d,e,pilihan;
 int a = 1;
 int t = 1;
 string yn;
 
 struct buku{
-    string judul;
-    string pengarang;
-    string penerbit;
+    string judul, pengarang, penerbit;
     int tahun,jumlah_buku,kode;
     };
     buku input[100];
  
 struct tanggal{
-    string harip;
-    string harik;
-    string nama;
-    int status = 1;
+    string harip, harik, nama;
+    int status = 0;
     int tanggalp,tanggalk,kodepinjam,kodebuku;
     };
-    tanggal tgl[100000];
+    tanggal tgl[1000000];
  
 void input_buku();
 void lihat_list_buku();
@@ -48,7 +44,7 @@ int main(){
     cout<<" 8. Exit                \n";
     cout<<"----------------------\n";
     cout<<"Masukan Pilihan anda[ 1 s.d. 8 ] = "; cin >> pilihan;
- 
+
     switch(pilihan){
         case 1:
             cout << " Input Buku " << endl;
@@ -111,7 +107,7 @@ void input_buku(){
         cout << "masukan kode buku = ";
         cin >> input[a].kode;
         a++;
-        }
+    }
 
 void lihat_list_buku(){
     cout<<"----------------------------------------------------------------------------------\n";
@@ -125,25 +121,17 @@ void lihat_list_buku(){
 }
 
 void edit_buku(){
-cout << "masukan kode buku yang ingin di edit = " << endl;
-cin >> b;
+cout << "masukan kode buku yang ingin di edit = "; cin >> b;
     for(int i=0; i<=a; i++){
         if(b == input[i].kode){
         cout<<setw(3)<<input[i].kode<<setw(15)<<input[i].judul<<setw(15)<<input[i].pengarang;
         cout<<setw(15)<<input[i].penerbit<<setw(15)<<input[i].tahun<<setw(15)<<input[i].jumlah_buku<<endl;
-
-        cout << "masukan nama buku = " << endl;
-        cin >> input[i].judul;
-        cout << "masukan nama pengarang = " << endl;
-        cin >> input[i].pengarang;
-        cout << "masukan nama penerbit = " << endl;
-        cin >> input[i].penerbit;
-        cout << "masukan tahun terbit = " << endl;
-        cin >> input[i].tahun;
-        cout << "masukan jumlah buku = " << endl;
-        cin >> input[i].jumlah_buku;
-        cout << "masukan kode buku = " << endl;
-        cin >> input[i].kode;
+        cout << "masukan nama buku = "; cin >> input[i].judul;
+        cout << "masukan nama pengarang = "; cin >> input[i].pengarang;
+        cout << "masukan nama penerbit = "; cin >> input[i].penerbit;
+        cout << "masukan tahun terbit = "; cin >> input[i].tahun;
+        cout << "masukan jumlah buku = "; cin >> input[i].jumlah_buku;
+        cout << "masukan kode buku = "; cin >> input[i].kode;
         break;
         }
         else{
@@ -153,13 +141,11 @@ cin >> b;
 }
 
 void delete_buku(){
-    cout << "masukan kode buku yang ingin di hapus = " << endl;
-    cin >> c;
+    cout << "masukan kode buku yang ingin di hapus = "; cin >> c;
     for(int i=1; i<a; i++){
         if(c == input[i].kode){
             cout<<setw(3)<<input[i].kode<<setw(15)<<input[i].judul<<setw(15)<<input[i].pengarang;
             cout<<setw(15)<<input[i].penerbit<<setw(15)<<input[i].tahun<<setw(15)<<input[i].jumlah_buku<<endl;
-
             input[i].judul = input[a-1].judul;
             input[i].pengarang = input[a-1].pengarang;
             input[i].penerbit = input[a-1].penerbit;
@@ -176,13 +162,11 @@ void delete_buku(){
 }
 
 void borrow_buku(){
-    int temp;
-    cout << "masukan kode buku ="; cin >> temp;
+    cout << "masukan kode buku ="; cin >> e;
     for(int i=1; i<=a; i++){
-        if(temp == input[i].kode){
+        if(e == input[i].kode){
             cout<<setw(3)<<input[i].kode<<setw(15)<<input[i].judul<<setw(15)<<input[i].pengarang;
             cout<<setw(15)<<input[i].penerbit<<setw(15)<<input[i].tahun<<setw(15)<<input[i].jumlah_buku<<endl;
-
             cout << "masukan nama anda ="; cin >> tgl[i].nama;
             cout << "masukan kode pinjam buku ="; cin >> tgl[t].kodepinjam;
             cout << "masukan kode buku ="; cin >> tgl[t].kodebuku;
@@ -198,10 +182,9 @@ void borrow_buku(){
             cout << "kode anda tidak ditemukan" << endl;
         }
     }
-
 }
 
-void return_buku(){
+void return_buku(string yn){
     cout << "masukan kode pinjam ="; cin >> d;
     for(int i=1; i<=t; i++){
         if(d == tgl[i].kodepinjam){
